@@ -11,10 +11,10 @@
 
 <meta name="author" content="YI-Hung, Lu" />
 
-<meta name="date" content="2024-02-18" />
+<meta name="date" content="2024-01-23" />
 
-<title>613-HW4</title>
-<h1>Hello</h1>
+<title>Data-613 lab1</title>
+
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
 document.addEventListener('DOMContentLoaded', function(e) {
@@ -350,221 +350,91 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">613-HW4</h1>
+<h1 class="title toc-ignore">Data-613 lab1</h1>
 <h4 class="author">YI-Hung, Lu</h4>
-<h4 class="date">2024-02-18</h4>
+<h4 class="date">2024-01-23</h4>
 
 </div>
 
 
-<ol style="list-style-type: decimal">
-<li></li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Use the R function nrow to confirm that the iris data frame has 150
-rows. Then use and show R code that features a map function to confirm
-that the iris data frame has 150 rows.</li>
-</ol>
-<pre class="r"><code>map_dbl(iris, ~ length(.x))</code></pre>
-<pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
-##          150          150          150          150          150</code></pre>
-<pre class="r"><code>iris_a1 &lt;- nrow(iris) # confirm the 150 rows.
-map_dbl(list(iris), nrow)</code></pre>
-<pre><code>## [1] 150</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Each column of the iris data frame has a unique number of values or
-objects. For example, the column Sepal.Length has 150 values but 35 of
-them are unique. Use and show R code that features a map function to
-find the number of unique values or objects for each column of the iris
-data frame.</li>
-</ol>
-<pre class="r"><code>library(dplyr) 
-map_dbl(iris, ~ n_distinct(.x))</code></pre>
-<pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
-##           35           23           43           22            3</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Use and show R code that features a nested loop that will produce
-the 5 by 3 matrix shown below.</li>
-</ol>
-<pre class="r"><code>matrix_sum &lt;- matrix(0, nrow = 3, ncol = 5)
-for (i in 1:3) {
-  for (j in 1:5) {
-    matrix_sum[i, j] &lt;- j-i
-  }
-}
-print(matrix_sum)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    0    1    2    3    4
-## [2,]   -1    0    1    2    3
-## [3,]   -2   -1    0    1    2</code></pre>
-<p>3)Use and show R code that will produce a tibble that features 10
-randomly generated values that are normally distributed, with means of
--10, 0, 10 and 100 respectfully. Run your code again, producing a second
-tibble, that confirms random values, hence the second table will not
-have the same values.</p>
-<pre class="r"><code>library(tibble)
-
-set.seed(123)
-tibble(
-  mean_1 = rnorm(10, mean = -10),
-  mean_2 = rnorm(10, mean = 0),
-  mean_3 = rnorm(10, mean = 10),
-  mean_4 = rnorm(10, mean = 100)
-)</code></pre>
-<pre><code>## # A tibble: 10 × 4
-##    mean_1 mean_2 mean_3 mean_4
-##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 -10.6   1.22    8.93  100. 
-##  2 -10.2   0.360   9.78   99.7
-##  3  -8.44  0.401   8.97  101. 
-##  4  -9.93  0.111   9.27  101. 
-##  5  -9.87 -0.556   9.37  101. 
-##  6  -8.28  1.79    8.31  101. 
-##  7  -9.54  0.498  10.8   101. 
-##  8 -11.3  -1.97   10.2    99.9
-##  9 -10.7   0.701   8.86   99.7
-## 10 -10.4  -0.473  11.3    99.6</code></pre>
-<pre class="r"><code>tibble(
-  mean_1 = rnorm(10, mean = -10),
-  mean_2 = rnorm(10, mean = 0),
-  mean_3 = rnorm(10, mean = 10),
-  mean_4 = rnorm(10, mean = 100)
-)</code></pre>
-<pre><code>## # A tibble: 10 × 4
-##    mean_1  mean_2 mean_3 mean_4
-##     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 -10.7   0.253   10.4    99.5
-##  2 -10.2  -0.0285   9.50   97.7
-##  3 -11.3  -0.0429   9.67  101. 
-##  4  -7.83  1.37     8.98   99.3
-##  5  -8.79 -0.226    8.93   99.3
-##  6 -11.1   1.52    10.3   101. 
-##  7 -10.4  -1.55    10.4    99.7
-##  8 -10.5   0.585   10.1    98.8
-##  9  -9.22  0.124   10.9   100. 
-## 10 -10.1   0.216   12.1    99.9</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li></li>
-</ol>
-<pre class="r"><code>X &lt;- list(12, 14, 15, 18, 19, 22,10,18,18)
-Mean &lt;- list(16, 16, 16, 16, 16,16,16,16,16)
-sd &lt;- list(2, 2, 2, 2, 2,2,2,2,2)</code></pre>
-<ol style="list-style-type: lower-alpha">
-<li>In statistics, a z score indicates the standard deviation distance
-between the mean and a specific value of the data set. What formula is
-used to find a z score? Use and show R coding that features a map
-function to iteratively find z scores across the lists given above.</li>
-</ol>
-<pre class="r"><code>z_score &lt;- function(X, Mean, sd) {
-  z= (X-Mean)/sd
-  return((X-Mean)/sd)
+<div id="section" class="section level1">
+<h1>1.</h1>
+<p>Firstly, encapsulating particular functions within a defined block,
+it improves code modularity and facilitates simpler maintenance and
+troubleshooting. Functions also help with code reusability by enabling
+the application of the same set of instructions to many projects or
+sections of a program. Using functions also encourages a more ordered
+and transparent code structure, which facilitates understanding and
+collaboration with the codebase by developers and collaborators
+alike.</p>
+</div>
+<div id="section-1" class="section level1">
+<h1>2.</h1>
+<pre class="r"><code>z_score &lt;- function(ov, mean, sd) {
+  z= (ov-mean)/sd
+  return((ov-mean)/sd)
 }
 
-pmap_dbl(list(X,Mean,sd), function(X, Mean, sd) (X-Mean)/sd)</code></pre>
-<pre><code>## [1] -2.0 -1.0 -0.5  1.0  1.5  3.0 -3.0  1.0  1.0</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>The test statistic for a population mean is given by the formula ((X
-- mean)/s/sqrt(n)) Use and show R coding that features a map function to
-iteratively find test statistics for population means across the lists
-given above.</li>
-</ol>
-<pre class="r"><code>n &lt;- length(X)
-
-pmap_dbl(list(X,Mean,sd, n), function(X, Mean, sd, n) (X - Mean)/(sd/sqrt(n)))</code></pre>
-<pre><code>## [1] -6.0 -3.0 -1.5  3.0  4.5  9.0 -9.0  3.0  3.0</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li></li>
-</ol>
-<pre class="r"><code>V = c(10,15,17,22,32,38,42)</code></pre>
-<ol style="list-style-type: lower-alpha">
-<li>Another purr package function is the keep( ) function. Research,
-explore, and use the keep( ) function to extract all number from the
-vector V given above that are less than 20</li>
-</ol>
-<pre class="r"><code>keep(V, ~ . &lt; 20)</code></pre>
-<pre><code>## [1] 10 15 17</code></pre>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Another purr package function is the discard( ) function. Research,
-explore, and use the discard( ) function to eliminate all numbers from
-the vector V given above that are less than 20</li>
-</ol>
-<pre class="r"><code>discard(V, ~. &lt; 20)</code></pre>
-<pre><code>## [1] 22 32 38 42</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Another purr package function is the safely( ) function. Research,
-explore, and apply the safely( ) function to the given vector below as
-illustrated.</li>
-</ol>
-<pre class="r"><code>U = list(10,15,&quot;mary&quot;,22,32,&quot;james&quot;,42)
-map(U, safely(~ .x + 15))</code></pre>
-<pre><code>## [[1]]
-## [[1]]$result
-## [1] 25
-## 
-## [[1]]$error
-## NULL
-## 
-## 
-## [[2]]
-## [[2]]$result
-## [1] 30
-## 
-## [[2]]$error
-## NULL
-## 
-## 
-## [[3]]
-## [[3]]$result
-## NULL
-## 
-## [[3]]$error
-## &lt;simpleError in .x + 15: non-numeric argument to binary operator&gt;
-## 
-## 
-## [[4]]
-## [[4]]$result
-## [1] 37
-## 
-## [[4]]$error
-## NULL
-## 
-## 
-## [[5]]
-## [[5]]$result
-## [1] 47
-## 
-## [[5]]$error
-## NULL
-## 
-## 
-## [[6]]
-## [[6]]$result
-## NULL
-## 
-## [[6]]$error
-## &lt;simpleError in .x + 15: non-numeric argument to binary operator&gt;
-## 
-## 
-## [[7]]
-## [[7]]$result
-## [1] 57
-## 
-## [[7]]$error
-## NULL</code></pre>
-<p>In four or five sentences, explain the specific output for this
-problem and how the definition and the application of the safely( )
-function is used.</p>
-<p>The specific output of the code would be a list where each numeric
-element in the original list U has 15 added to it, while non-numeric
-elements retain their original values along with information about the
-error encountered. This is because the safely() function is applied
-within the map() function to ensure safe execution of the transformation
-function ~ .x + 15. When applied to non-numeric elements like “mary” and
-“james”, instead of throwing an error, safely() captures the error and
-returns a list containing details about the error, such as the error
-message and the input that caused the error. Therefore, the output
-maintains the integrity of the original list while providing information
-about errors encountered during the transformation process.</p>
+z_score(25.77 ,23.54, 2.442)</code></pre>
+<pre><code>## [1] 0.9131859</code></pre>
+<pre class="r"><code>round (z_score(25.77 ,23.54, 2.442), digit= 1)</code></pre>
+<pre><code>## [1] 0.9</code></pre>
+</div>
+<div id="section-2" class="section level1">
+<h1>3.</h1>
+<pre class="r"><code>A &lt;- function(x,y,z)
+{log(x)*log(y,base= y)/z*(1/3)
+  return(log(x)*log(y,base= y)/z*(1/3))
+}
+A(32,32,11)</code></pre>
+<pre><code>## [1] 0.1050223</code></pre>
+<pre class="r"><code>round (A(32,32,11), digit= 2)</code></pre>
+<pre><code>## [1] 0.11</code></pre>
+</div>
+<div id="section-3" class="section level1">
+<h1>4.</h1>
+<pre class="r"><code>mtcars</code></pre>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+<pre class="r"><code> output2 &lt;- vector(&quot;double&quot;, ncol(mtcars))   # 1. output
+ for (i in seq_along(mtcars)) {              # 2. sequence
+   output2[[i]] &lt;- sd(mtcars[[i]])         # 3. body
+ }
+ output2</code></pre>
+<pre><code>##  [1]   6.0269481   1.7859216 123.9386938  68.5628685   0.5346787   0.9784574
+##  [7]   1.7869432   0.5040161   0.4989909   0.7378041   1.6152000</code></pre>
+</div>
 
 
 
